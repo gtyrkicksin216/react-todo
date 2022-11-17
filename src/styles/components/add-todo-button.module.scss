@@ -1,0 +1,12 @@
+.button {
+	position: absolute;
+	right: 0.4rem;
+	height: 4rem;
+	padding-inline: 0.8rem;
+	border-radius: 4px;
+	background: linear-gradient(-50deg, var(--brandPrimary), var(--brandSecondary));
+	font-weight: 700;
+	font-size: 1.4rem;
+	color: var(--white);
+	letter-spacing: 1px;
+}

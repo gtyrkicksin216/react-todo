@@ -1,0 +1,40 @@
+@use './styles/base';
+
+:root {
+	--white: #fff;
+	--richBlack: #333;
+	--black_s10: #ccc;
+	--brandPrimary: rgb(219, 115, 219);
+	--brandSecondary: rgb(180, 156, 246);
+	--brandWarn: #cc4c40;
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  line-height: 24px;
+  font-weight: 400;
+	background: linear-gradient(50deg, var(--brandPrimary), var(--brandSecondary));
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+#root {
+  display: grid;
+  height: 100%;
+  width: 100%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+html {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}

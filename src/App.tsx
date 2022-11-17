@@ -1,32 +1,84 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { useState, useEffect } from 'react'
+import TodoList from './components/TodoList'
+import AddTodoControl from './components/AddTodoControl'
+import { addTodo, deleteTodo, getTodos, markCompleted } from './services/todo.service'
+import './app.scss'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [todos, setTodos] = useState([])
+
+  useEffect(() => {
+    const getTodos = async () => {
+      try {
+        await populateTodos()
+      } catch (err) {
+        console.error(err)
+      }
+    }
+    getTodos()
+  }, [])
+
+  function handleAddTodo(value?: string) {
+    if (!value) return
+    // handle adding the todo
+    const _addTodo = async () => {
+      try {
+        await addTodo(value)
+        await populateTodos()
+      } catch (err) {
+        console.error(err)
+      }
+    }
+    _addTodo()
+  }
+
+  function handleMarkCompleted(id: string) {
+    if (!id) return
+    const _markCompleted = async () => {
+      try {
+        await markCompleted(id)
+        await populateTodos()
+      } catch (err) {
+        console.error(err)
+      }
+    }
+    _markCompleted()
+  }
+
+  function handleDeleteTodo(id: string) {
+    if (!id) return
+    const _handleDelete = async () => {
+      try {
+        await deleteTodo(id)
+        await populateTodos()
+      } catch (err) {
+        console.error(err)
+      }
+    }
+    _handleDelete()
+  }
+
+  async function populateTodos() {
+    try {
+      const _todos = await getTodos().then(res => res.json())
+      setTodos(_todos)
+    } catch (err) {
+      console.error(err)
+    }
+  }
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <div className="app">
+      <section className="app__todos">
+        <AddTodoControl onAddTodo={handleAddTodo} />
+        <div className="app__todos-list">
+          <TodoList
+            todos={todos}
+            onMarkCompleted={(e) => handleMarkCompleted(e)}
+            onDelete={(e) => handleDeleteTodo(e)}
+          />
+        </div>
+      </section>
     </div>
   )
 }

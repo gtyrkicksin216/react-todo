@@ -1,0 +1,24 @@
+.todos {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: center;
+	align-items: start;
+	&-list {
+		display: flex;
+		flex-flow: column nowrap;
+		gap: 0.8rem;
+		width: 100%;
+	}
+}
+
+.no-results {
+	flex: 0 0 auto;
+	text-align: center;
+	font-size: 3.2rem;
+	font-weight: 700;
+	align-self: center;
+	&-subtext {
+		margin-block-start: 0.8rem;
+		font-size: 2rem;
+	}
+}

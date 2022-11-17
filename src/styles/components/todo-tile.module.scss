@@ -1,0 +1,20 @@
+.tile {
+	cursor: pointer;
+	display: grid;
+	grid-template: auto / 1fr auto;
+	justify-content: start;
+	align-items: center;
+	height: 4.8rem;
+	padding-inline: 0.8rem;
+	border-radius: 8px;
+	box-shadow: 0 0 4px rgba(85, 85, 85, 0.25);
+	line-height: 1.1;
+}
+
+.tile-text {
+	&.is {
+		&--completed {
+			text-decoration: line-through;
+		}
+	}
+}
